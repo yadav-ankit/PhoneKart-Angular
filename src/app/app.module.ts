@@ -8,24 +8,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { Router , Routes, RouterModule} from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
-const appRoutes : Routes = [
-  {
-    path : 'checkout',
-    component : CartComponent
-  },
-  {
-    path : 'profile',
-    component : MyProfileComponent
-  },
-  {
-    path : '**',
-    component : NotFoundComponent
-  }
-  
-  ];
-
-
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -36,7 +19,8 @@ const appRoutes : Routes = [
   imports: [
     BrowserModule,
     CartModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
