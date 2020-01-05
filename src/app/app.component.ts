@@ -16,7 +16,7 @@ export class AppComponent {
   public clickMethod(){
     this.myProfileService.getMyDetails().subscribe(res =>{
       console.log(res);
-      this.textToPrint = res;
+      this.textToPrint = "  " + res.message;
     });
   }
 
