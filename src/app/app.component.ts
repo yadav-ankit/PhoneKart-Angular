@@ -8,13 +8,16 @@ import { MyProfileService } from './my-profile.service';
 })
 export class AppComponent {
   title = 'PhoneKart';
-
-  constructor(private productService: MyProfileService) {
+  textToPrint = '';
+  constructor(private myProfileService: MyProfileService) {
 
   }
 
   public clickMethod(){
-    
+    this.myProfileService.getMyDetails().subscribe(res =>{
+      console.log(res);
+      this.textToPrint = res;
+    });
   }
 
 }

@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { Router , Routes, RouterModule} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 const appRoutes : Routes = [
   {
@@ -30,13 +31,12 @@ const appRoutes : Routes = [
   declarations: [
     AppComponent,
     NotFoundComponent,
-    CartComponent,
     MyProfileComponent
-
   ],
   imports: [
     BrowserModule,
-    CartModule
+    CartModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
