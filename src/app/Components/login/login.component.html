@@ -1,6 +1,21 @@
 
 
 <div class="container">
+    <span class="login" (click)="loadSigninForm()">Login</span> 
+    /
+    <span class="login" (click)="loadSignupForm()">SignUp</span>
+
+    <br>
+    <br>
+    <div *ngIf="signupForm">
+    <label for="uname"><b>Name</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    <label for="uname"><b>Email</b></label>
+    <input type="text" placeholder="Enter Username" name="uname" required>
+
+    </div>
+
     <label for="uname"><b>Username</b></label>
     <input type="text" placeholder="Enter Username" name="uname" required>
 
@@ -8,6 +23,7 @@
     <input type="password" placeholder="Enter Password" name="psw" required>
 
     <button type="submit">Login</button>
+    <button *ngIf="signupForm" type="submit" >SignUp</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>

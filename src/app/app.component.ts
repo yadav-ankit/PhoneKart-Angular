@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MyProfileService } from './my-profile.service';
+import { MyProfileService } from './Services/my-profile.service';
 import { User } from './Models/user';
 
 @Component({
