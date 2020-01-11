@@ -36,6 +36,8 @@
   
   .login {
     padding-right: 130px;
+    font-weight: 500;
+    font-stretch: wider;
   }
 
   .login:hover{
@@ -246,6 +248,7 @@
     width:100%;
     position:fixed;
     bottom: 0px;
+    background-color: rgb(205, 234, 252);
 }
 .footer {
     width:400px;
@@ -256,5 +259,14 @@
     width:100%;
   
     padding:20px 0;
+}
+
+.terms{
+  color: #ee724d;
+}
+.terms:hover{
+  cursor: pointer;
+  text-decoration: underline;
+  
 }
 .footer p {float:left; width:100%; text-align:center; }
