@@ -22,7 +22,7 @@
     <label for="psw"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" [(ngModel)]="password" name="psw" required>
 
-    <button type="submit"  (click)="loginServiceCall()">Login</button>
+    <button type="submit"  *ngIf="!signupForm" (click)="loginServiceCall()">Login</button>
     <button *ngIf="signupForm"  (click)="signUpService()" type="submit" >SignUp</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me

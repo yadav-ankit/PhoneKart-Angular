@@ -39,11 +39,14 @@ export class LoginComponent implements OnInit {
 
   signUpService(){
 
-    console.log(this.email)
-    console.log(this.name);
 
-    this.loginService.signupAPI().subscribe(res => {
+    this.user.name = this.name;
+    this.user.password = this.password;
+    this.user.email = this.email;
+    this.user.username = this.username;
 
+    this.loginService.signupAPI(this.user).subscribe(res => {
+      console.log(res);
     });
 
   }
@@ -56,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.user.username = this.username;
   
   this.loginService.loginAPI(this.user).subscribe(res => {
-
+    console.log(res);
   });
   }
 
