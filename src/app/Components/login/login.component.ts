@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from 'src/app/Services/login.service';
+import { User } from 'src/app/Models/user';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginService : LoginService;
+  user : User;
+
+  name : string ;
+  email : string;
+  password : string;
+  username : string;
+
+
+  constructor(loginService : LoginService) { 
+    this.loginService = loginService;
+    this.user = new User();
+  }
 
   signupForm : boolean = false;
 
@@ -21,6 +35,29 @@ export class LoginComponent implements OnInit {
 
   loadSigninForm(){
     this.signupForm = false;
+  }
+
+  signUpService(){
+
+    console.log(this.email)
+    console.log(this.name);
+
+    this.loginService.signupAPI().subscribe(res => {
+
+    });
+
+  }
+  
+  loginServiceCall(){
+
+    this.user.name = this.name;
+    this.user.password = this.password;
+    this.user.email = this.email;
+    this.user.username = this.username;
+  
+  this.loginService.loginAPI(this.user).subscribe(res => {
+
+  });
   }
 
 }

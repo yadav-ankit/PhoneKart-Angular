@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './Components/login/login.component';
 import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LoginService } from './Services/login.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginService } from './Services/login.service';
     BrowserModule,
     CartModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [LoginService],
   bootstrap: [AppComponent]

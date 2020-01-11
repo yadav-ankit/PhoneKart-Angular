@@ -9,21 +9,21 @@
     <br>
     <div *ngIf="signupForm">
     <label for="uname"><b>Name</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Enter Name"  [(ngModel)]="name"  name="uname" required>
 
     <label for="uname"><b>Email</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Enter Username" [(ngModel)]="email" [value]="email" required>
 
     </div>
 
     <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
+    <input type="text" placeholder="Enter Username" [(ngModel)]="username" name="uname" required>
 
     <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <input type="password" placeholder="Enter Password" [(ngModel)]="password" name="psw" required>
 
-    <button type="submit">Login</button>
-    <button *ngIf="signupForm" type="submit" >SignUp</button>
+    <button type="submit"  (click)="loginServiceCall()">Login</button>
+    <button *ngIf="signupForm"  (click)="signUpService()" type="submit" >SignUp</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
