@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   username : string;
   outputText : any ;
   router : Router;
+  error_message : string = '';
 
   constructor(loginService : LoginService,private myrouter :Router) { 
     this.loginService = loginService;
@@ -35,10 +36,15 @@ export class LoginComponent implements OnInit {
   loadSignupForm(){
     console.log("Ye click ho rha h")
     this.signupForm = true;
+    this.username = "";
+    this.password = "";
   }
 
   loadSigninForm(){
     this.signupForm = false;
+
+    this.name = '';
+    this.password = '';
   }
 
   signUpService(){
@@ -49,10 +55,21 @@ export class LoginComponent implements OnInit {
     this.user.email = this.email;
     this.user.username = this.username;
 
+    let message ;
+
     this.loginService.signupAPI(this.user).subscribe(res => {
       console.log(res);
+    
+      message = res.message;
+      this.error_message = res.error;
+
+      if(!isNullOrUndefined(message)){
+        this.router.navigate(['/dashboard']);
+      }
+      
     });
 
+   
   }
   
   loginServiceCall(){
@@ -63,15 +80,21 @@ export class LoginComponent implements OnInit {
     this.user.username = this.username;
     
   let message ;
+
   this.loginService.loginAPI(this.user).subscribe(res => {
     console.log(res);
     message = res.message;
+    this.error_message = res.error;
    // this.outputText = res.message +  " " + res.error + "Token : " + res.token;
-  });
-  
-  if(isNullOrUndefined(message)){
+
+   if(!isNullOrUndefined(message)){
+    console.log("hona chaahiye to dashbaord")
     this.router.navigate(['/dashboard']);
   }
+  });
+
+  console.log("ye dekho PEHLE CHAL GYA ")
+ 
 }
 
 }
