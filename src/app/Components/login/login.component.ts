@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   username : string;
   outputText : any ;
   router : Router;
-  error_message : string = '';
+  error_message : string = null;
 
   constructor(loginService : LoginService,private myrouter :Router) { 
     this.loginService = loginService;
@@ -38,10 +38,12 @@ export class LoginComponent implements OnInit {
     this.signupForm = true;
     this.username = "";
     this.password = "";
+    this.error_message = "";
   }
 
   loadSigninForm(){
     this.signupForm = false;
+    this.error_message = "";
 
     this.name = '';
     this.password = '';
@@ -66,7 +68,7 @@ export class LoginComponent implements OnInit {
       if(!isNullOrUndefined(message)){
         this.router.navigate(['/dashboard']);
       }
-      
+
     });
 
    
