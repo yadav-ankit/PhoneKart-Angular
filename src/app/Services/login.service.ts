@@ -26,7 +26,7 @@ export class LoginService {
     password : user.password
   };
 
-    return  this.http.post(this.loginUrl,user);
+    return  this.http.post(this.loginUrl,jwtRequest);
     
 }
 
