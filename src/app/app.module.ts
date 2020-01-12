@@ -14,6 +14,7 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LoginService } from './Services/login.service';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
+import { MessageService } from './Services/message.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { FooterComponent } from './Components/footer/footer.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [LoginService],
+  providers: [LoginService,MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

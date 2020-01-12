@@ -3,6 +3,8 @@ import { LoginService } from 'src/app/Services/login.service';
 import { User } from 'src/app/Models/user';
 import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { MessageService } from 'src/app/Services/message.service';
 
 @Component({
   selector: 'app-login',
@@ -11,29 +13,32 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  loginService : LoginService;
-  user : User;
+  loginService: LoginService;
+  user: User;
 
-  name : string ;
-  email : string;
-  password : string;
-  username : string;
-  outputText : any ;
-  router : Router;
-  error_message : string = null;
+  name: string;
+  email: string;
+  password: string;
+  username: string;
+  outputText: any;
+  router: Router;
+  error_message: string = null;
+  sessionMaintained = new Subject();
+  messageService: MessageService;
 
-  constructor(loginService : LoginService,private myrouter :Router) { 
+  constructor(loginService: LoginService, private myrouter: Router, mymessageServie: MessageService) {
     this.loginService = loginService;
     this.user = new User();
     this.router = myrouter;
+    this.messageService = mymessageServie;
   }
 
-  signupForm : boolean = false;
+  signupForm: boolean = false;
 
   ngOnInit() {
   }
 
-  loadSignupForm(){
+  loadSignupForm() {
     console.log("Ye click ho rha h")
     this.signupForm = true;
     this.username = "";
@@ -41,7 +46,7 @@ export class LoginComponent implements OnInit {
     this.error_message = "";
   }
 
-  loadSigninForm(){
+  loadSigninForm() {
     this.signupForm = false;
     this.error_message = "";
 
@@ -49,54 +54,50 @@ export class LoginComponent implements OnInit {
     this.password = '';
   }
 
-  signUpService(){
-
+  signUpService() {
 
     this.user.name = this.name;
     this.user.password = this.password;
     this.user.email = this.email;
     this.user.username = this.username;
 
-    let message ;
+    let message;
 
     this.loginService.signupAPI(this.user).subscribe(res => {
       console.log(res);
-    
+
       message = res.message;
       this.error_message = res.error;
 
-      if(!isNullOrUndefined(message)){
+      if (!isNullOrUndefined(message)) {
         this.router.navigate(['/dashboard']);
       }
 
     });
 
-   
+
   }
-  
-  loginServiceCall(){
+
+  loginServiceCall() {
 
     this.user.name = this.name;
     this.user.password = this.password;
     this.user.email = this.email;
     this.user.username = this.username;
+
+    let message;
+
+    this.loginService.loginAPI(this.user).subscribe(res => {
+
+      message = res.message;
+      this.error_message = res.error;
     
-  let message ;
+      if (!isNullOrUndefined(message)) {
+        this.messageService.bSubject.next(res.token);
+        this.router.navigate(['/dashboard']);
+      }
+    });
 
-  this.loginService.loginAPI(this.user).subscribe(res => {
-    console.log(res);
-    message = res.message;
-    this.error_message = res.error;
-   // this.outputText = res.message +  " " + res.error + "Token : " + res.token;
-
-   if(!isNullOrUndefined(message)){
-    console.log("hona chaahiye to dashbaord")
-    this.router.navigate(['/dashboard']);
   }
-  });
-
-  console.log("ye dekho PEHLE CHAL GYA ")
- 
-}
 
 }

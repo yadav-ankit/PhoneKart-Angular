@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from "rxjs/operators"; 
 import { User } from '../Models/user';
@@ -11,6 +11,8 @@ import { User } from '../Models/user';
 
 export class LoginService {
 
+  private subject = new Subject<any>();
+  
   constructor(private http: HttpClient) { }
 
   loginUrl = 'http://localhost:8765/signin';
