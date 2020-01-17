@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    console.log("cart component loaded from LAZYily....")
+   }
 
   ngOnInit() {
   }

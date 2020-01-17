@@ -19,19 +19,20 @@ export class DashboardComponent implements OnInit {
   userSignedIn: boolean = false;
   messageToShow: string = '';
   router: Router;
-  pageRefreshToken : string;
 
   constructor(mymessageServie: MessageService, myrouter: Router) {
+    
+    console.log("DasBOARDDDDDDDd")
     this.messageService = mymessageServie;
     this.router = myrouter;
+    
+    this.token = JSON.parse(localStorage.getItem('mytoken'));
 
-   this.pageRefreshToken =  this.messageService.bSubject.getValue();
-
+    console.log("TOken got from Local ")
+    console.log(this.token)
+/*
     this.subscription = this.messageService.bSubject.subscribe(res => {
       this.token = res;
-      console.log("message recieved in BSUBJECT")
-      console.log(this.token)
-
       localStorage.setItem('mytoken', JSON.stringify(this.token));
 
       if (!isNullOrUndefined(this.token)) {
@@ -47,19 +48,23 @@ export class DashboardComponent implements OnInit {
       }
     });
     this.token = this.messageService.getMessage();
+
+    */
   }
 
   ngOnInit() {
     
     this.token = this.messageService.getMessage();
 
+    /*
     if(isNullOrUndefined(this.pageRefreshToken)){
       this.router.navigate(['/home']);
     }
+    */
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+  // this.subscription.unsubscribe();
   }
 
 }

@@ -15,12 +15,13 @@ import { LoginService } from './Services/login.service';
 import { FormsModule } from '@angular/forms';
 import { FooterComponent } from './Components/footer/footer.component';
 import { MessageService } from './Services/message.service';
+import { ShopModule } from './Modules/shop.module';
+import { CanActivateRouteGuard } from './Components/RouteGuard/CanActivateRouteGuard.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotFoundComponent,
-    MyProfileComponent,
     LoginComponent,
     DashboardComponent,
     FooterComponent
@@ -30,9 +31,10 @@ import { MessageService } from './Services/message.service';
     CartModule,
     HttpClientModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ShopModule
   ],
-  providers: [LoginService,MessageService],
+  providers: [LoginService,MessageService,CanActivateRouteGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
