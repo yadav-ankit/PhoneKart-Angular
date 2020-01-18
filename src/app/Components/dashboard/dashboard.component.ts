@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/app/Services/message.service';
 import { Subscription } from 'rxjs';
-import { isNullOrUndefined } from 'util';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/Services/login.service';
+import { MainService } from 'src/app/Services/main.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,52 +20,50 @@ export class DashboardComponent implements OnInit {
   userSignedIn: boolean = false;
   messageToShow: string = '';
   router: Router;
+  loginService: LoginService;
 
-  constructor(mymessageServie: MessageService, myrouter: Router) {
-    
-    console.log("DasBOARDDDDDDDd")
+  constructor(mymessageServie: MessageService, myrouter: Router, private myloginService: LoginService,
+    mainService: MainService) {
+    this.loginService = myloginService;
     this.messageService = mymessageServie;
     this.router = myrouter;
-    
+
     this.token = JSON.parse(localStorage.getItem('mytoken'));
 
-    console.log("TOken got from Local ")
-    console.log(this.token)
-/*
-    this.subscription = this.messageService.bSubject.subscribe(res => {
-      this.token = res;
-      localStorage.setItem('mytoken', JSON.stringify(this.token));
 
-      if (!isNullOrUndefined(this.token)) {
-        this.userSignedIn = true;
-        this.messageService.saveMessage(this.token);
-      }
 
-      if (this.userSignedIn) {
-        this.messageToShow = 'Hi User you are signed in';
-        console.log(this.messageToShow)
-      } else {
-        this.router.navigate(['/home']);
-      }
+    this.messageService.bSubject.subscribe(res => {
+    //  this.loginService.hello(res);
+      mainService.callCartService(res);
     });
-    this.token = this.messageService.getMessage();
-
-    */
+    /*
+        this.subscription = this.messageService.bSubject.subscribe(res => {
+          this.token = res;
+          localStorage.setItem('mytoken', JSON.stringify(this.token));
+    
+          if (!isNullOrUndefined(this.token)) {
+            this.userSignedIn = true;
+            this.messageService.saveMessage(this.token);
+          }
+    
+          if (this.userSignedIn) {
+            this.messageToShow = 'Hi User you are signed in';
+            console.log(this.messageToShow)
+          } else {
+            this.router.navigate(['/home']);
+          }
+        });
+        this.token = this.messageService.getMessage();
+    
+        */
   }
 
   ngOnInit() {
-    
-    this.token = this.messageService.getMessage();
 
-    /*
-    if(isNullOrUndefined(this.pageRefreshToken)){
-      this.router.navigate(['/home']);
-    }
-    */
   }
 
   ngOnDestroy() {
-  // this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 
 }

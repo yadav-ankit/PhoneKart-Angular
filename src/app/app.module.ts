@@ -17,6 +17,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { MessageService } from './Services/message.service';
 import { ShopModule } from './Modules/shop.module';
 import { CanActivateRouteGuard } from './Components/RouteGuard/CanActivateRouteGuard.service';
+import { MainService } from './Services/main.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,7 @@ import { CanActivateRouteGuard } from './Components/RouteGuard/CanActivateRouteG
     FormsModule,
     ShopModule
   ],
-  providers: [LoginService,MessageService,CanActivateRouteGuard],
+  providers: [LoginService,MessageService,CanActivateRouteGuard,MainService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

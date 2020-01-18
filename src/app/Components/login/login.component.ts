@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   error_message: string = null;
   sessionMaintained = new Subject();
   messageService: MessageService;
+  token: string;
 
   constructor(loginService: LoginService, private myrouter: Router, mymessageServie: MessageService) {
     this.loginService = loginService;
@@ -91,9 +92,10 @@ export class LoginComponent implements OnInit {
 
       message = res.message;
       this.error_message = res.error;
-    
+
       if (!isNullOrUndefined(message)) {
         this.messageService.bSubject.next(res.token);
+        this.token = res.token;
         this.router.navigate(['/dashboard']);
       }
     });
