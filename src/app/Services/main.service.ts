@@ -15,7 +15,6 @@ export class MainService {
         this.fetchDatas();
       }
     constructor(private http: HttpClient) { }
-
     afterAuthUrl = 'http://localhost:8765';
 
     public callCartService(token) {
