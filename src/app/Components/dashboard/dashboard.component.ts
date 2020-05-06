@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/Services/login.service';
 import { MainService } from 'src/app/Services/main.service';
-
+import {TvmazeService} from 'ankit_tvmaze';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -21,13 +21,14 @@ export class DashboardComponent implements OnInit {
   messageToShow: string = '';
   router: Router;
   loginService: LoginService;
+  show : Show;
 
   constructor(mymessageServie: MessageService, myrouter: Router, private myloginService: LoginService,
     mainService: MainService) {
     this.loginService = myloginService;
     this.messageService = mymessageServie;
     this.router = myrouter;
-
+    this.show.ge
     this.token = JSON.parse(localStorage.getItem('mytoken'));
 
 
