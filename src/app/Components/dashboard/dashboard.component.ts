@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MessageService } from 'src/app/Services/message.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -10,7 +10,7 @@ import {TvmazeService} from 'ankit_tvmaze';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
   // Code formatting   (select all ) - --> Shift + Alt + F 
 
@@ -23,6 +23,11 @@ export class DashboardComponent implements OnInit {
   loginService: LoginService;
   show : Show;
 
+  @Input('message')
+  setMessage() {
+
+  }
+
   constructor(mymessageServie: MessageService, myrouter: Router, private myloginService: LoginService,
     mainService: MainService) {
     this.loginService = myloginService;
@@ -34,7 +39,7 @@ export class DashboardComponent implements OnInit {
 
 
     this.messageService.bSubject.subscribe(res => {
-    //  this.loginService.hello(res);
+      //  this.loginService.hello(res);
       mainService.callCartService(res);
     });
     /*
@@ -65,6 +70,10 @@ export class DashboardComponent implements OnInit {
 
   ngOnDestroy() {
     // this.subscription.unsubscribe();
+  }
+
+  play(x: number) {
+
   }
 
 }
